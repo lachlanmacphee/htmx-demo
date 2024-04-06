@@ -1,0 +1,32 @@
+package components
+
+templ Layout(contents templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<meta name="color-scheme" content="light dark"/>
+			<link
+				rel="stylesheet"
+				href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.sand.min.css"
+			/>
+			<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+			<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+			<title>htmx-demo</title>
+		</head>
+		<body>
+			<main class="container">
+				<nav>
+					<ul>
+						<li><a href="/"><strong>htmx-demo</strong></a></li>
+					</ul>
+					<ul>
+						<li>by <a href="https://github.com/lachlanmacphee">Lachlan MacPhee</a></li>
+					</ul>
+				</nav>
+				@contents
+			</main>
+		</body>
+	</html>
+}

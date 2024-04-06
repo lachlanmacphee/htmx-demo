@@ -1,0 +1,45 @@
+package components
+
+import (
+	"htmx-demo/models"
+	"strconv"
+)
+
+templ ClickToEdit(person models.Person) {
+	<div hx-target="this" hx-swap="outerHTML">
+		<div>
+			<label>First Name</label>
+			<p>{ person.FirstName }</p>
+		</div>
+		<div>
+			<label>Last Name</label>
+			<p>{ person.LastName }</p>
+		</div>
+		<div>
+			<label>Suburb</label>
+			<p>{ person.Suburb }</p>
+		</div>
+		<button hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) + "/edit" }>
+			Click To Edit
+		</button>
+	</div>
+}
+
+templ ClickToEditForm(person models.Person) {
+	<form hx-put={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) } hx-target="this" hx-swap="outerHTML">
+		<div>
+			<label>First Name</label>
+			<input type="text" name="firstName" value={ person.FirstName }/>
+		</div>
+		<div>
+			<label>Last Name</label>
+			<input type="text" name="lastName" value={ person.LastName }/>
+		</div>
+		<div>
+			<label>Suburb</label>
+			<input name="suburb" value={ person.Suburb }/>
+		</div>
+		<button>Submit</button>
+		<button hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) }>Cancel</button>
+	</form>
+}

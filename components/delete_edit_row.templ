@@ -1,0 +1,66 @@
+package components
+
+import (
+	"htmx-demo/models"
+	"strconv"
+)
+
+templ DeleteEditRows(persons []models.Person) {
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">First Name</th>
+				<th scope="col">Last Name</th>
+				<th scope="col">Suburb</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody hx-target="closest tr" hx-swap="outerHTML">
+			for _, person := range persons {
+				<tr>
+					<td>{ person.FirstName }</td>
+					<td>{ person.LastName }</td>
+					<td>{ person.Suburb }</td>
+					<td>
+						<div role="group">
+							<button hx-delete={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) } class="secondary">Delete</button>
+							<button hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) + "/edit-row" }>Edit</button>
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+templ DeleteEditRow(person models.Person) {
+	<tr>
+		<td>{ person.FirstName }</td>
+		<td>{ person.LastName }</td>
+		<td>{ person.Suburb }</td>
+		<td>
+			<div role="group">
+				<button hx-delete={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) } class="secondary">Delete</button>
+				<button hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) + "/edit-row" }>Edit</button>
+			</div>
+		</td>
+	</tr>
+}
+
+templ EditRowForm(person models.Person) {
+	<tr>
+		<td><input name="firstName" value={ person.FirstName }/></td>
+		<td><input name="lastName" value={ person.LastName }/></td>
+		<td><input name="suburb" value={ person.Suburb }/></td>
+		<td>
+			<div role="group">
+				<button hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) + "/row" }>
+					Cancel
+				</button>
+				<button hx-put={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) + "/row" } hx-include="closest tr">
+					Save
+				</button>
+			</div>
+		</td>
+	</tr>
+}

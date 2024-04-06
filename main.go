@@ -11,9 +11,7 @@ func main() {
 
 	db.Connect()
 	db.Migrate()
-
-	// Uncomment the below line to seed the database
-	// db.Seed()
+	db.Seed()
 
 	mux := &http.ServeMux{}
 
@@ -38,6 +36,6 @@ func main() {
 	mux.HandleFunc("PUT /person/{id}/row", handlers.PutPersonRow)
 	mux.HandleFunc("GET /person/{id}/edit-row", handlers.GetPersonEditRow)
 
-	fmt.Println("Listening on port 3000")
-	http.ListenAndServe("localhost:3000", mux)
+	fmt.Println("Listening on port 8080")
+	http.ListenAndServe(":8080", mux)
 }

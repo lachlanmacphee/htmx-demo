@@ -1,8 +1,8 @@
 module htmx-demo
 
-go 1.22.2
+go 1.24.2
 
-require github.com/a-h/templ v0.2.648
+require github.com/a-h/templ v0.3.960
 
 require (
 	github.com/jinzhu/inflection v1.0.0 // indirect

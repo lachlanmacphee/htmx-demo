@@ -39,7 +39,9 @@ templ ClickToEditForm(person models.Person) {
 			<label>Suburb</label>
 			<input name="suburb" value={ person.Suburb }/>
 		</div>
-		<button>Submit</button>
-		<button hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) }>Cancel</button>
+		<div role="group">
+			<button class="secondary" hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) }>Cancel</button>
+			<button>Submit</button>
+		</div>
 	</form>
 }

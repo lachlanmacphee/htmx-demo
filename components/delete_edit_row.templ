@@ -54,7 +54,7 @@ templ EditRowForm(person models.Person) {
 		<td><input name="suburb" value={ person.Suburb }/></td>
 		<td>
 			<div role="group">
-				<button hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) + "/row" }>
+				<button hx-get={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) + "/row" } class="secondary">
 					Cancel
 				</button>
 				<button hx-put={ "/person/" + strconv.FormatUint(uint64(person.ID), 10) + "/row" } hx-include="closest tr">
